@@ -1,0 +1,22 @@
+# aws buildspec code for ubuntu image
+
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+    commands:
+      - echo Installing nginx
+      - sudo apt-get update
+      - sudo apt-get install nginx -y
+  build:
+    commands:
+      - echo Build started on date
+      - sudo cp -r ./* /var/www/html
+  post_build:
+    commands:
+      - echo Configuring nginx
+artifacts:
+  files:
+    - "**/*"
